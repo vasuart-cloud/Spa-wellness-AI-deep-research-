@@ -1,0 +1,985 @@
+
+You are a Principal Product Engineer, Lead AI Product Manager, Enterprise UX Designer, and AI Platform Architect.
+
+Build a complete, working, enterprise-grade prototype named:
+
+"InsightFlow — AI Business Intelligence & Governance"
+
+Subtitle: "Trusted insights. Smarter decisions. Measurable growth."
+
+This is a conceptual extension of Zenoti's Data Products and AI Business Advisor for multi-location salon and wellness businesses.
+
+IMPORTANT:
+- Build an interactive working web application, not a static Figma-like mockup.
+- Use realistic but entirely synthetic business data.
+- Do not connect to actual Zenoti systems or use real customer data.
+- Clearly label the product as an independent concept prototype.
+- Reuse existing AI Business Advisor concepts such as conversational analytics, KPI analysis, charts, explanations, follow-up questions and pinned answers.
+- Clearly distinguish proposed enhancements: refreshable insight tiles, saved recurring analyses, proactive alerts, governance, ROI tracking and tenant AI cost management.
+- Do not fabricate business results. All figures, charts and tables must be calculated from the same synthetic data.
+- Make every button and user journey functional.
+- This prototype must be reliable enough for a live 15-minute product leadership demonstration.
+
+================================================
+1. TECHNOLOGY AND DESIGN
+================================================
+
+Build a responsive React + TypeScript application with a Node.js server.
+
+Use:
+- Tailwind CSS for design.
+- Recharts for interactive visualization.
+- Lucide icons.
+- TanStack Table or equivalent for advanced tables.
+- jsPDF or equivalent for exporting PDF reports.
+- Gemini API through server-side calls only.
+- A deterministic synthetic analytics engine for financial calculations.
+
+Use a modular architecture so data, policy, analytics, agents, dashboards, schedules and alerts are separate services.
+
+Use browser persistence for prototype settings and saved dashboards. If Firebase is available and configured, it may be used for persistent storage, but the application must work without it.
+
+Use server-side secrets for API keys.
+
+Never expose API credentials in frontend code.
+
+DESIGN STYLE:
+Create a premium enterprise SaaS interface:
+- Clean white and soft-gray surfaces.
+- Deep navy text.
+- Teal and blue accents.
+- Subtle purple AI indicators.
+- Excellent whitespace.
+- Modern sidebar and navigation.
+- Clear headings and readable typography.
+- Smooth transitions and subtle animations.
+- Interactive charts with tooltips.
+- Responsive layouts.
+
+This should resemble a polished enterprise data platform, not a generic chatbot.
+
+================================================
+2. DEMO ORGANIZATION AND PERSONAS
+================================================
+
+Create a fictional wellness business called:
+
+"Elevate Salon & Wellness Group"
+
+It has 20 salons across multiple regions.
+
+Create three demo identities selectable from a persistent role switcher at the top:
+
+A. ARJUN — REGIONAL MANAGER
+Can access only the 5 salons assigned to his region.
+
+Goals:
+- Improve repeat visits.
+- Reduce unused stylist hours.
+- Identify declining revenue.
+- Understand business anomalies.
+- Act on useful recommendations.
+- Save and schedule important insights.
+
+B. MEERA — COO
+Can access the complete 20-salon organization.
+
+Goals:
+- Monitor revenue, profit and retention.
+- Compare salon performance.
+- Identify revenue leakage.
+- See executive summaries.
+- Understand financial impact.
+- Evaluate whether AI investments generate value.
+
+C. NEHA — CUSTOMER ADMIN
+Can manage tenant-level AI settings and view approved analytics.
+
+Goals:
+- Configure role permissions.
+- Manage AI governance.
+- Control access to data.
+- Configure alert thresholds.
+- Review audit events.
+- Set AI token and cost budgets.
+- Monitor usage of AI Business Advisor, AI Retention Manager and AI Dispute Manager.
+- Pause AI capabilities when required.
+
+Use demo role switching rather than pretending it is real user authentication.
+
+Every data query must still enforce the selected role's permissions.
+
+Create a discreet "Demo / Synthetic Data" label.
+
+================================================
+3. SYNTHETIC BUSINESS DATA
+================================================
+
+Generate realistic, reproducible data for 20 salons covering 12 months and at least the most recent 30 days.
+
+Include:
+- Salon and region.
+- Service revenue.
+- Retail revenue.
+- Completed paid visits.
+- New and returning guests.
+- Rebooking rates.
+- Average ticket value.
+- Appointment cancellations.
+- No-shows.
+- Available and utilized stylist hours.
+- Staff utilization percentage.
+- Retail attachment rate.
+- Discount amount.
+- Membership-related revenue.
+- Repeat-visit intervals.
+- Estimated contribution margin.
+- Revenue per available hour.
+
+Use a roughly 900-completed-visits-per-month baseline per salon, with realistic variation.
+
+Include several deliberate problems:
+1. Three salons with declining repeat visits.
+2. Two salons with elevated cancellations.
+3. One region with declining stylist utilization.
+4. Several salons with low retail attachment rates.
+5. One salon with strong revenue but declining contribution margin.
+6. One data source with stale reporting information.
+
+All trends and problems must be derived from generated datasets, not independently hardcoded in AI answers.
+
+Implement a shared analytics calculation layer that all charts, tables, alerts and AI responses use.
+
+Include source timestamps and business metric definitions.
+
+Use daily batch reporting for certain KPIs and more recent events for operational metrics. Display the distinction clearly.
+
+Do not describe data as real-time if its underlying source is updated only daily.
+
+================================================
+4. APPLICATION NAVIGATION
+================================================
+
+Create a sidebar with:
+
+1. Overview
+2. AI Business Advisor
+3. Saved Insights
+4. Custom Dashboards
+5. Revenue Opportunities
+6. Reports & Exports
+7. Alerts & Notifications
+8. AI Governance
+9. AI Control Tower
+10. Audit & Observability
+11. Settings
+
+Show or hide navigation according to role.
+
+Admin-only settings must not be accessible to regional managers.
+
+================================================
+5. ARJUN — AI BUSINESS ADVISOR
+================================================
+
+Create a sophisticated conversational analytics interface.
+
+LAYOUT:
+
+Left:
+- Chat history.
+- Suggested questions.
+- Saved questions.
+- Fast Analysis and Deep Analysis selector.
+
+Center:
+- Conversational AI messages.
+- Business insights.
+- Explanation and recommendations.
+
+Right or underneath:
+- Responsive visualization panel.
+- Interactive graphs.
+- Comparison tables.
+- Metric explanations.
+- Source-data freshness indicators.
+
+Suggested questions:
+
+"Which salons had the biggest decline in repeat visits in the last 30 days?"
+
+"Why are three salons losing repeat customers?"
+
+"Show me revenue by salon for the last six months."
+
+"Which salons have the highest unused stylist capacity?"
+
+"Where did retail product sales decline this month?"
+
+"Which salons are at risk of missing revenue targets?"
+
+"Which salons should I prioritize this week?"
+
+"What should I do to improve repeat visits?"
+
+"What changed compared with last month?"
+
+"Show the estimated financial impact of these opportunities."
+
+Every response should follow this structure:
+
+A. DIRECT ANSWER
+Two or three natural-language sentences.
+
+B. BUSINESS METRICS
+Relevant KPI cards with current value, baseline and variance.
+
+C. VISUAL EVIDENCE
+Choose a visualization based on the question.
+
+Use:
+- Line chart for time trends.
+- Bar chart for salon comparisons.
+- Stacked bar for service vs retail revenue.
+- Heatmap for utilization across days and times.
+- Funnel for rebooking or conversion.
+- Detailed sortable table for supporting records.
+
+D. DATA FRESHNESS
+Display:
+- Source system.
+- Data-through timestamp.
+- Last analysis execution.
+- Freshness status.
+- Data completeness when available.
+
+E. WHAT LOOKS UNUSUAL?
+Identify a real anomaly using the dataset.
+
+Show:
+- Actual value.
+- Historical baseline.
+- Absolute and percentage deviation.
+- Severity.
+- Confidence or evidence quality.
+
+F. LIKELY DRIVERS
+Explain the strongest observed contributing factors.
+
+Do not claim causation without evidence.
+
+G. RECOMMENDED NEXT ACTION
+Provide one to three actions with:
+- Business rationale.
+- Expected direction of impact.
+- Priority.
+- Responsible persona.
+- Required human approval.
+
+H. FOLLOW-UP QUESTIONS
+Provide three contextual suggestions that update based on the previous conversation.
+
+I. ACTIONS
+Every AI response should include useful controls:
+
+- Save Insight
+- Pin to Dashboard
+- Refresh
+- Schedule
+- Export PDF
+- Export CSV
+- Share
+- Explain Metric
+- View Supporting Data
+- Mark Useful / Not Useful
+
+Buttons must do something meaningful.
+
+================================================
+6. CONTEXTUAL CONVERSATION
+================================================
+
+The Advisor must remember the user's current analytical context during a conversation.
+
+Example:
+
+Arjun:
+"Which salons had declining repeat visits?"
+
+Advisor:
+Shows the affected salons and trend chart.
+
+Arjun:
+"Why did that happen?"
+
+Advisor:
+Explains those same salons using rebooking rates, appointment trends and service data.
+
+Arjun:
+"Show only the worst two."
+
+Advisor:
+Filters the previous results rather than starting a new analysis.
+
+Arjun:
+"What should I do next?"
+
+Advisor:
+Provides relevant, approved recommendations for those salons.
+
+Arjun:
+"What is the estimated financial impact?"
+
+Advisor:
+Uses the same salon selection and historical metrics to calculate a clearly labeled scenario.
+
+Do not generate made-up values through the language model.
+
+The analytics engine must calculate values first. Gemini may explain those structured results in simple language.
+
+For unsupported questions, respond honestly and suggest a supported alternative.
+
+For ambiguous questions, request clarification.
+
+Do not expose private model reasoning or chain-of-thought. Instead, provide a useful explanation using data sources, metric definitions, calculations and validation checks.
+
+================================================
+7. MEERA — COO EXECUTIVE EXPERIENCE
+================================================
+
+Create a distinct executive dashboard.
+
+Meera prefers concise, business-oriented insights.
+
+Show:
+- Total revenue.
+- Revenue growth.
+- Estimated contribution.
+- Repeat-visit rate.
+- Staff utilization.
+- Revenue-at-risk opportunities.
+- Top and bottom-performing regions.
+- Business alerts requiring attention.
+- Value delivered by completed interventions.
+
+Create an executive AI Business Advisor response style.
+
+Example prompt:
+
+"How is our business performing this month?"
+
+Response layout:
+
+EXECUTIVE SUMMARY
+Maximum three high-impact sentences.
+
+KEY NUMBERS
+Four KPI cards.
+
+WHAT NEEDS ATTENTION
+Top three business risks ranked by potential impact.
+
+RECOMMENDATION
+One or two prioritized executive actions.
+
+FINANCIAL IMPLICATION
+Explain estimated opportunity or loss.
+
+EVIDENCE
+Expandable "Explore deeper" section containing:
+- Regional comparisons.
+- Supporting graphs.
+- Salon-level table.
+- KPI definitions.
+- Data freshness and caveats.
+- Detailed calculation methodology.
+
+Other example COO questions:
+
+"Which regions are reducing our profitability?"
+
+"Where are we losing revenue despite having available capacity?"
+
+"Which retention intervention generated incremental sales?"
+
+"How confident should I be in these recommendations?"
+
+"How much business value did our managers generate this quarter?"
+
+"Which actions should I prioritize in the next executive review?"
+
+Provide a button:
+"Generate Executive Brief"
+
+Generate a readable executive PDF containing:
+- Short summary.
+- Selected charts.
+- Business risks.
+- Recommended actions.
+- Financial assumptions.
+- Data freshness information.
+
+Meera should be able to open Arjun's authorized saved insights and compare results across regions.
+
+================================================
+8. SAVED INSIGHTS AND CUSTOM DASHBOARDS
+================================================
+
+This is a key proposed product enhancement.
+
+Arjun can save an AI analytical response as a reusable insight.
+
+When saving, store:
+- Natural-language question.
+- Structured metric query definition.
+- KPI identifiers and versions.
+- Authorized salon scope.
+- Filters.
+- Relative date range.
+- Visualization configuration.
+- Owner.
+- Creation timestamp.
+- Data freshness requirement.
+- Recommended refresh frequency.
+
+Provide "Add to Custom Dashboard".
+
+Users can:
+- Create dashboards.
+- Rename dashboards.
+- Add/remove tiles.
+- Reorder tiles.
+- Resize tiles.
+- Filter tiles.
+- Open supporting details.
+- Refresh individual tiles.
+- Refresh all authorized tiles.
+
+Each tile should show:
+- Metric name.
+- Current value.
+- Trend.
+- Last successful refresh.
+- Data freshness.
+- Warning if underlying data is stale.
+
+Support schedules:
+- Daily.
+- Weekly.
+- Monthly.
+- Custom day and time.
+- Local timezone.
+
+Provide a working "Run Now" control.
+
+For the demo, scheduled execution can be simulated with a clear testable "Advance Demo Time" or "Run Due Jobs" control.
+
+Do not claim server-side background scheduling exists unless a real scheduler has been implemented.
+
+Schedule changes must persist across reloads.
+
+A refreshed tile must recalculate values from the data layer, not simply update the timestamp.
+
+================================================
+9. REVENUE OPPORTUNITIES AND PROACTIVE ALERTS
+================================================
+
+Create a revenue opportunity dashboard showing:
+
+- Declining repeat visits.
+- Underutilized stylist capacity.
+- Elevated cancellations.
+- Declining retail attachment.
+- Unusual discount levels.
+- Margin compression.
+- Revenue variance by salon.
+
+Each opportunity card includes:
+- Affected salon(s).
+- Current metric.
+- Expected baseline.
+- Potential business impact.
+- Freshness.
+- Severity.
+- Supporting evidence.
+- Recommended next action.
+- Assigned owner.
+- Status.
+
+Use statuses:
+New, Under Review, Action Approved, In Progress, Completed, Dismissed.
+
+Create a configurable alert rule builder.
+
+Example:
+Metric: Repeat-visit rate
+Condition: Falls by more than
+Threshold: 5%
+Comparison: Previous four-week baseline
+Scope: Selected salons
+Channel: Email
+Recipient: Regional Manager
+Frequency: Once daily
+Minimum source freshness: 24 hours
+
+Other rule examples:
+- Cancellation rate above 12%.
+- Staff utilization below 65%.
+- Revenue decline greater than 8%.
+- Retail attach rate decline greater than 10%.
+- Unusual increases in discount spending.
+
+Thresholds are demo configuration values, not universal industry benchmarks.
+
+Show how a new rule triggers an alert using the actual generated data.
+
+Provide:
+- Simulate Alert
+- View Evidence
+- Assign Action
+- Snooze
+- Resolve
+
+For alerts with stale data, show:
+"Cannot verify current condition — source data requires refresh."
+
+Do not issue confident recommendations based on stale or incomplete inputs.
+
+================================================
+10. EXPORTING AND SHARING
+================================================
+
+Allow users to export:
+- Insight reports.
+- Dashboard views.
+- Executive briefs.
+- Revenue opportunity summaries.
+- Audit reports, for authorized admins.
+
+PDF reports should be attractive and include charts, tables, metric definitions and data freshness.
+
+Support CSV export for tabular data.
+
+Provide Share controls:
+- Email.
+- WhatsApp.
+- SMS for approved alerts.
+
+For the prototype:
+- Implement working recipient selection and message previews.
+- Implement a simulated delivery outbox.
+- Show a "Demo delivery — not actually sent" confirmation.
+- Record the simulated delivery in the audit log.
+
+Do not actually send email, SMS or WhatsApp without a configured integration and explicit user authorization.
+
+Enforce permissions before generating and sharing sensitive reports.
+
+Prefer expiring secure report links for sensitive information, with clear prototype simulation where applicable.
+
+================================================
+11. NEHA — AI GOVERNANCE CONSOLE
+================================================
+
+Create a professional customer-admin experience.
+
+Show six governance pillars.
+
+1. AGENT IDENTITY
+- Agent identifier.
+- Owner.
+- Enabled / Disabled status.
+- Allowed tenant and scope.
+- Allowed tools and capabilities.
+
+2. AUDIT TRAIL
+- Query activity.
+- Saved insight changes.
+- Scheduled executions.
+- Report exports.
+- Policy changes.
+- Alert delivery attempts.
+- User approvals.
+
+Use append-only event records in the demo where possible.
+Do not claim legally immutable storage without implementing it.
+
+3. SCOPED PERMISSIONS
+- Role-based access.
+- Salon-level permissions.
+- Region-level access.
+- Approved recipients.
+- Allowed export channels.
+- Data access policies.
+
+4. EMERGENCY CONTROL
+- Pause AI Business Advisor.
+- Disable scheduling.
+- Suspend alert delivery.
+- Disable sharing.
+- Restore the previous approved policy configuration.
+
+5. MONITORING AND COST CONTROLS
+- Query volume.
+- Model usage.
+- Token consumption.
+- Estimated spend.
+- Average response latency.
+- Failure rate.
+- Cache hit rate.
+- Cost per successful insight.
+
+6. EVALUATION AND SAFETY TESTS
+- Unauthorized data request tests.
+- Stale-data warning tests.
+- Incorrect KPI checks.
+- Permission-change tests.
+- Cost-limit enforcement tests.
+- Malicious prompt tests.
+
+Show a green, amber or red status only when supported by actual demo checks.
+
+================================================
+12. AI CONTROL TOWER
+================================================
+
+Neha can monitor these three products:
+
+- AI Business Advisor.
+- AI Retention Manager.
+- AI Dispute Manager.
+
+These are simulated product-level usage streams, not live Zenoti integrations.
+
+Show cards for:
+- Total queries.
+- Queries by agent.
+- Fast vs deep analysis usage.
+- Tokens consumed.
+- Estimated AI spending.
+- Budget remaining.
+- Cache hit rate.
+- Average latency.
+- Error rate.
+- Blocked requests.
+- Policy violations.
+- Scheduled jobs executed.
+
+Visualizations:
+- Daily token usage line chart.
+- Cost by agent stacked bar chart.
+- Request distribution donut chart.
+- Cache effectiveness trend.
+- Tenant budget utilization.
+- Failed request and policy event table.
+
+Add filters by:
+- Product.
+- Date range.
+- User.
+- Region.
+- Request type.
+
+Neha can configure:
+- Daily tenant token budget.
+- Monthly AI spending budget.
+- User-level rate limits.
+- Fast vs deep request limits.
+- Maximum concurrency.
+- Cache policy.
+- Maximum query window.
+- Allowed model tiers.
+- High-cost query approval.
+- Hard stop or warning near budget exhaustion.
+
+When a request exceeds a configured limit:
+- Block it or require approval according to policy.
+- Show a helpful explanation.
+- Record the policy event.
+- Never silently bypass governance.
+
+Use actual Gemini usage metadata when available.
+Otherwise label token counts and spending clearly as simulation or estimates.
+
+================================================
+13. AI EFFICIENCY AND CACHING
+================================================
+
+Build a cost-aware query execution strategy.
+
+Route known KPI requests through deterministic data calculations.
+
+Use the language model primarily for:
+- Interpreting new analytical questions.
+- Explaining anomalies.
+- Summarizing business insights.
+- Generating structured recommendations.
+- Summarizing follow-up context.
+
+Avoid invoking deep analysis for every dashboard refresh.
+
+Implement:
+- Normalized query caching.
+- Saved analytical definitions.
+- Bounded conversation summaries.
+- Shared metric calculations.
+- Model selection based on request complexity.
+- Cache invalidation after source-data changes.
+- Token and cost observability.
+
+Cache keys must include:
+- Tenant identifier.
+- Authorized role and scope.
+- Metric definitions and versions.
+- Query and filters.
+- Date range.
+- Data version.
+
+Never reuse a response across tenants or unauthorized users.
+
+Show a user-friendly status:
+"Reused certified calculation — no new deep analysis required."
+
+Do not claim tokens were saved unless the estimate is based on a transparent calculation.
+
+================================================
+14. MEASURING BUSINESS OUTCOMES
+================================================
+
+Create a "Business Value" view.
+
+When Arjun acts on an insight, allow him to:
+- Record the action.
+- Identify affected salons.
+- Enter intervention start date.
+- Assign an owner.
+- Track its status.
+- Select a comparison or holdout approach.
+
+For the demo, show simulated before/after and treatment/control metrics.
+
+Clearly label these as illustrative.
+
+Show:
+- Additional completed paid visits.
+- Incremental sales.
+- Contribution margin.
+- Discounts and intervention costs.
+- Estimated net contribution.
+- Confidence or uncertainty.
+- Customer time saved.
+
+Use this transparent illustrative scenario:
+
+20 salons
+900 completed visits per salon per month
+12 months
+216,000 annual visits
+$95 average ticket
+0.5% hypothetical relative uplift
+1,080 incremental completed visits
+$102,600 additional annual sales
+35% contribution margin
+$35,910 additional annual contribution
+
+Create sensitivity analysis:
+0.25% uplift
+0.50% uplift
+1.00% uplift
+
+Do not describe the 0.5% as a forecast or an achieved result.
+
+The interface should explain that improved insights alone do not cause revenue growth. A manager must take action, and the incremental effect must be validated.
+
+If using modeled product fees or implementation costs, label the assumptions and distinguish steady-state annual economics from first-year rollout economics.
+
+================================================
+15. AI RESPONSE CONTRACT
+================================================
+
+Create consistent structured output for analytical questions.
+
+Each answer should contain:
+
+- Title.
+- Short summary.
+- Time range.
+- Business scope.
+- KPI cards.
+- Chart type and chart data.
+- Supporting table.
+- Data-through timestamp.
+- Last analysis timestamp.
+- Anomaly flags.
+- Evidence-based interpretation.
+- Likely drivers.
+- Recommended actions.
+- Caveats.
+- Suggested follow-ups.
+- Structured metric calculation details.
+
+The frontend should render these sections as polished interactive components.
+
+Never return raw JSON to the user.
+
+The language model must not invent numerical results. Compute metrics from the data layer and then generate the narrative.
+
+When a metric is unavailable, say so.
+
+When the user asks about an unauthorized salon, deny access rather than generating an answer.
+
+When data is stale, clearly warn the user before making recommendations.
+
+================================================
+16. DEMONSTRATION SCENARIOS
+================================================
+
+Create a prominent "Demo Scenarios" selector.
+
+SCENARIO 1 — ARJUN FINDS A PROBLEM
+
+Arjun asks:
+"Which salons had the largest decline in repeat visits?"
+
+Show:
+- KPI summary.
+- Bar chart ranking.
+- Trend chart.
+- Supporting salon table.
+- Data freshness.
+- Three prioritized recommendations.
+
+He asks:
+"Why did that happen?"
+
+Show an evidence-based explanation and relevant follow-up charts.
+
+He saves the analysis to his dashboard and creates a weekly schedule.
+
+SCENARIO 2 — ARJUN GETS AN ALERT
+
+A configured rule identifies unusual decline in repeat visits.
+
+Show a notification.
+
+Arjun opens the supporting evidence, reviews the suggested action and records an approved follow-up.
+
+SCENARIO 3 — MEERA REVIEWS THE BUSINESS
+
+Meera asks:
+"Where should I focus to improve profitability this quarter?"
+
+Show a short executive summary, four key metrics, a regional comparison chart, and two priority actions.
+
+Provide an expandable deep dive and an exportable PDF brief.
+
+SCENARIO 4 — NEHA CONTROLS AI
+
+Neha opens the AI Control Tower.
+
+She:
+- Reviews AI usage across three products.
+- Lowers the tenant budget.
+- Restricts deep analysis.
+- Configures an alert rule.
+- Reviews audit events.
+- Tests an unauthorized request.
+- Pauses scheduled analysis temporarily.
+
+The controls must affect the visible demo workflow.
+
+SCENARIO 5 — MEERA VERIFIES VALUE
+
+Meera opens a completed intervention.
+
+Show:
+- Original business problem.
+- Insight delivered.
+- Action taken.
+- Measured or modeled outcome.
+- Comparison group.
+- Financial calculations.
+- Confidence limitations.
+
+================================================
+17. DEMO RELIABILITY REQUIREMENTS
+================================================
+
+Every demo scenario must work without relying on a successful live Gemini API call.
+
+Use deterministic local analytics and precomputed fallback explanations.
+
+If Gemini is available, it can improve wording and interpret supported questions.
+
+If Gemini is unavailable, show a graceful fallback response calculated from the same dataset.
+
+Do not show blank screens or break the user journey.
+
+Ensure:
+- All charts render.
+- Every suggested prompt works.
+- Tables contain meaningful data.
+- Role switching updates scope.
+- Save Insight persists.
+- Manual refresh recalculates results.
+- Dashboard editing works.
+- Scheduled runs can be simulated.
+- Alerts trigger based on configured rules.
+- PDF export downloads a real file.
+- Sharing creates a simulated outbox entry.
+- Admin settings affect subsequent requests.
+- Audit logs update after user actions.
+- Unauthorized requests are blocked.
+- AI usage metrics update consistently.
+
+Avoid fake functionality, decorative buttons and placeholder pages.
+
+================================================
+18. FINAL PRODUCT EXPERIENCE
+================================================
+
+Create an excellent onboarding screen:
+
+"Welcome to InsightFlow"
+
+"Turn business questions into trusted decisions."
+
+Buttons:
+- Enter as Arjun
+- Enter as Meera
+- Enter as Neha
+- Explore Guided Demo
+
+Provide a Guided Demo that walks through:
+
+1. Arjun identifies falling repeat visits.
+2. AI explains the evidence.
+3. Arjun saves a refreshable insight.
+4. Arjun schedules weekly analysis.
+5. An alert highlights an unusual trend.
+6. Arjun records a management action.
+7. Meera reviews the financial outcome.
+8. Neha checks governance and AI cost.
+
+Show useful progress indicators.
+
+Create small contextual hints for the presenter explaining which functionality is existing Zenoti-inspired behavior and which is a proposed enhancement.
+
+The application should clearly demonstrate this product vision:
+
+TRUST
+Reliable data and transparent calculations.
+
+ADOPT
+Useful and explainable business recommendations.
+
+REPEAT
+Saved, refreshable and scheduled intelligence.
+
+PROVE
+Measured customer value and efficient AI usage.
+
+QUALITY BAR:
+Prioritize functional completeness, consistent financial data, enterprise-grade visual design and an excellent live demonstration.
+
+Build the complete application now. Run it, resolve compilation issues, and verify all five demo scenarios before considering the task complete.

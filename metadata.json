@@ -1,0 +1,6 @@
+{
+  "name": "InsightFlow — AI Business Intelligence & Governance",
+  "description": "Trusted insights. Smarter decisions. Measurable growth. Enterprise conversational analytics, refreshable dashboards, proactive alerts, and AI governance concept prototype.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
